@@ -3,11 +3,22 @@ package battleships;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Battleships extends Application {
-    
+public class Battleships extends Application {    
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Battleships");
+        Spiel spiel = new Spiel();
+        while (spiel.getStatus() != Status.ENDE) {
+            switch (spiel.getStatus()) {
+                case MENU:
+                    break;
+                case SCHIFFE_SETZEN:
+                    break;
+                case SPIELEN:
+                    break;
+            }
+            spiel.setStatus(Status.ENDE);
+        }
         primaryStage.show();
     }
 

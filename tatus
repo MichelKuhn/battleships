@@ -1,0 +1,1272 @@
+[33mcommit b946f13ea91da15b7ab5e62d4fa5980a40bea028[m
+Author: Michel Kuhn <kuhnmi@rz-55.wara.de>
+Date:   Tue Feb 20 12:33:41 2018 +0100
+
+    Initial
+
+[1mdiff --git a/build.xml b/build.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7c0dc10[m
+[1m--- /dev/null[m
+[1m+++ b/build.xml[m
+[36m@@ -0,0 +1,53 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?><!-- You may freely edit this file. See commented blocks below for --><!-- some examples of how to customize the build. --><!-- (If you delete it and reopen the project it will be recreated.) --><!-- By default, only the Clean and Build commands use this build script. --><project name="Battleships" default="default" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">[m
+[32m+[m[32m    <description>Builds, tests, and runs the project Battleships.</description>[m
+[32m+[m[32m    <import file="nbproject/build-impl.xml"/>[m
+[32m+[m[32m    <!--[m
+[32m+[m
+[32m+[m[32m    There exist several targets which are by default empty and which can be[m[41m [m
+[32m+[m[32m    used for execution of your tasks. These targets are usually executed[m[41m [m
+[32m+[m[32m    before and after some main targets. Those of them relevant for JavaFX project are:[m[41m [m
+[32m+[m
+[32m+[m[32m      -pre-init:                 called before initialization of project properties[m
+[32m+[m[32m      -post-init:                called after initialization of project properties[m
+[32m+[m[32m      -pre-compile:              called before javac compilation[m
+[32m+[m[32m      -post-compile:             called after javac compilation[m
+[32m+[m[32m      -pre-compile-test:         called before javac compilation of JUnit tests[m
+[32m+[m[32m      -post-compile-test:        called after javac compilation of JUnit tests[m
+[32m+[m[32m      -pre-jfx-jar:              called before FX SDK specific <fx:jar> task[m
+[32m+[m[32m      -post-jfx-jar:             called after FX SDK specific <fx:jar> task[m
+[32m+[m[32m      -pre-jfx-deploy:           called before FX SDK specific <fx:deploy> task[m
+[32m+[m[32m      -post-jfx-deploy:          called after FX SDK specific <fx:deploy> task[m
+[32m+[m[32m      -pre-jfx-native:           called just after -pre-jfx-deploy if <fx:deploy> runs in native packaging mode[m
+[32m+[m[32m      -post-jfx-native:          called just after -post-jfx-deploy if <fx:deploy> runs in native packaging mode[m
+[32m+[m[32m      -post-clean:               called after cleaning build products[m
+[32m+[m
+[32m+[m[32m    (Targets beginning with '-' are not intended to be called on their own.)[m
+[32m+[m
+[32m+[m[32m    Example of inserting a HTML postprocessor after javaFX SDK deployment:[m
+[32m+[m
+[32m+[m[32m        <target name="-post-jfx-deploy">[m
+[32m+[m[32m            <basename property="jfx.deployment.base" file="${jfx.deployment.jar}" suffix=".jar"/>[m
+[32m+[m[32m            <property name="jfx.deployment.html" location="${jfx.deployment.dir}${file.separator}${jfx.deployment.base}.html"/>[m
+[32m+[m[32m            <custompostprocess>[m
+[32m+[m[32m                <fileset dir="${jfx.deployment.html}"/>[m
+[32m+[m[32m            </custompostprocess>[m
+[32m+[m[32m        </target>[m
+[32m+[m
+[32m+[m[32m    Example of calling an Ant task from JavaFX SDK. Note that access to JavaFX SDK Ant tasks must be[m
+[32m+[m[32m    initialized; to ensure this is done add the dependence on -check-jfx-sdk-version target:[m
+[32m+[m
+[32m+[m[32m        <target name="-post-jfx-jar" depends="-check-jfx-sdk-version">[m
+[32m+[m[32m            <echo message="Calling jar task from JavaFX SDK"/>[m
+[32m+[m[32m            <fx:jar ...>[m
+[32m+[m[32m                ...[m
+[32m+[m[32m            </fx:jar>[m
+[32m+[m[32m        </target>[m
+[32m+[m
+[32m+[m[32m    For more details about JavaFX SDK Ant tasks go to[m
+[32m+[m[32m    http://docs.oracle.com/javafx/2/deployment/jfxpub-deployment.htm[m
+[32m+[m
+[32m+[m[32m    For list of available properties check the files[m
+[32m+[m[32m    nbproject/build-impl.xml and nbproject/jfx-impl.xml.[m
+[32m+[m
+[32m+[m[32m    -->[m
+[32m+[m[32m</project>[m
+[1mdiff --git a/build/built-jar.properties b/build/built-jar.properties[m
+[1mnew file mode 100644[m
+[1mindex 0000000..70c05c8[m
+[1m--- /dev/null[m
+[1m+++ b/build/built-jar.properties[m
+[36m@@ -0,0 +1,4 @@[m
+[32m+[m[32m#Tue, 20 Feb 2018 12:22:34 +0100[m
+[32m+[m
+[32m+[m
+[32m+[m[32m/home/students/e2fi2/kuhnmi/Home_auf_Server/Battleships=[m
+[1mdiff --git a/build/classes/battleships/Battleships$1.class b/build/classes/battleships/Battleships$1.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3c5c3de[m
+Binary files /dev/null and b/build/classes/battleships/Battleships$1.class differ
+[1mdiff --git a/build/classes/battleships/Battleships.class b/build/classes/battleships/Battleships.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d735b31[m
+Binary files /dev/null and b/build/classes/battleships/Battleships.class differ
+[1mdiff --git a/build/classes/battleships/Feld.class b/build/classes/battleships/Feld.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5ff3d4f[m
+Binary files /dev/null and b/build/classes/battleships/Feld.class differ
+[1mdiff --git a/build/classes/battleships/Karte.class b/build/classes/battleships/Karte.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c1d42ba[m
+Binary files /dev/null and b/build/classes/battleships/Karte.class differ
+[1mdiff --git a/build/classes/battleships/Spieler.class b/build/classes/battleships/Spieler.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6095f85[m
+Binary files /dev/null and b/build/classes/battleships/Spieler.class differ
+[1mdiff --git a/dist/Battleships.html b/dist/Battleships.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..715ff8d[m
+[1m--- /dev/null[m
+[1m+++ b/dist/Battleships.html[m
+[36m@@ -0,0 +1,45 @@[m
+[32m+[m[32m<html><head>[m
+[32m+[m[32m  <SCRIPT src="./web-files/dtjava.js"></SCRIPT>[m
+[32m+[m[32m<script>[m
+[32m+[m[32m    function launchApplication(jnlpfile) {[m
+[32m+[m[32m        dtjava.launch(            {[m
+[32m+[m[32m                url : 'Battleships.jnlp',[m
+[32m+[m[32m                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGpubHAgc3BlYz0iMS4wIiB4bWxuczpqZng9Imh0dHA6Ly9qYXZhZnguY29tIiBocmVmPSJCYXR0bGVzaGlwcy5qbmxwIj4KICA8aW5mb3JtYXRpb24+CiAgICA8dGl0bGU+QmF0dGxlc2hpcHM8L3RpdGxlPgogICAgPHZlbmRvcj5rdWhubWk8L3ZlbmRvcj4KICAgIDxkZXNjcmlwdGlvbj5udWxsPC9kZXNjcmlwdGlvbj4KICAgIDxvZmZsaW5lLWFsbG93ZWQvPgogIDwvaW5mb3JtYXRpb24+CiAgPHJlc291cmNlcz4KICAgIDxqMnNlIHZlcnNpb249IjEuNisiIGhyZWY9Imh0dHA6Ly9qYXZhLnN1bi5jb20vcHJvZHVjdHMvYXV0b2RsL2oyc2UiLz4KICAgIDxqYXIgaHJlZj0iQmF0dGxlc2hpcHMuamFyIiBzaXplPSI0MjA0IiBkb3dubG9hZD0iZWFnZXIiIC8+CiAgPC9yZXNvdXJjZXM+CiAgPGFwcGxldC1kZXNjICB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgbWFpbi1jbGFzcz0iY29tLmphdmFmeC5tYWluLk5vSmF2YUZYRmFsbGJhY2siICBuYW1lPSJCYXR0bGVzaGlwcyIgPgogICAgPHBhcmFtIG5hbWU9InJlcXVpcmVkRlhWZXJzaW9uIiB2YWx1ZT0iOC4wKyIvPgogIDwvYXBwbGV0LWRlc2M+CiAgPGpmeDpqYXZhZngtZGVzYyAgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIG1haW4tY2xhc3M9ImJhdHRsZXNoaXBzLkJhdHRsZXNoaXBzIiAgbmFtZT0iQmF0dGxlc2hpcHMiIC8+CiAgPHVwZGF0ZSBjaGVjaz0iYWx3YXlzIi8+Cjwvam5scD4K'[m
+[32m+[m[32m            },[m
+[32m+[m[32m            {[m
+[32m+[m[32m                javafx : '8.0+'[m
+[32m+[m[32m            },[m
+[32m+[m[32m            {}[m
+[32m+[m[32m        );[m
+[32m+[m[32m        return false;[m
+[32m+[m[32m    }[m
+[32m+[m[32m</script>[m
+[32m+[m
+[32m+[m[32m<script>[m
+[32m+[m[32m    function javafxEmbedbattleships() {[m
+[32m+[m[32m        dtjava.embed([m
+[32m+[m[32m            {[m
+[32m+[m[32m                id : 'battleships',[m
+[32m+[m[32m                url : 'Battleships.jnlp',[m
+[32m+[m[32m                placeholder : 'javafx-app-placeholder',[m
+[32m+[m[32m                width : '800',[m
+[32m+[m[32m                height : '600',[m
+[32m+[m[32m                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGpubHAgc3BlYz0iMS4wIiB4bWxuczpqZng9Imh0dHA6Ly9qYXZhZnguY29tIiBocmVmPSJCYXR0bGVzaGlwcy5qbmxwIj4KICA8aW5mb3JtYXRpb24+CiAgICA8dGl0bGU+QmF0dGxlc2hpcHM8L3RpdGxlPgogICAgPHZlbmRvcj5rdWhubWk8L3ZlbmRvcj4KICAgIDxkZXNjcmlwdGlvbj5udWxsPC9kZXNjcmlwdGlvbj4KICAgIDxvZmZsaW5lLWFsbG93ZWQvPgogIDwvaW5mb3JtYXRpb24+CiAgPHJlc291cmNlcz4KICAgIDxqMnNlIHZlcnNpb249IjEuNisiIGhyZWY9Imh0dHA6Ly9qYXZhLnN1bi5jb20vcHJvZHVjdHMvYXV0b2RsL2oyc2UiLz4KICAgIDxqYXIgaHJlZj0iQmF0dGxlc2hpcHMuamFyIiBzaXplPSI0MjA0IiBkb3dubG9hZD0iZWFnZXIiIC8+CiAgPC9yZXNvdXJjZXM+CiAgPGFwcGxldC1kZXNjICB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgbWFpbi1jbGFzcz0iY29tLmphdmFmeC5tYWluLk5vSmF2YUZYRmFsbGJhY2siICBuYW1lPSJCYXR0bGVzaGlwcyIgPgogICAgPHBhcmFtIG5hbWU9InJlcXVpcmVkRlhWZXJzaW9uIiB2YWx1ZT0iOC4wKyIvPgogIDwvYXBwbGV0LWRlc2M+CiAgPGpmeDpqYXZhZngtZGVzYyAgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIG1haW4tY2xhc3M9ImJhdHRsZXNoaXBzLkJhdHRsZXNoaXBzIiAgbmFtZT0iQmF0dGxlc2hpcHMiIC8+CiAgPHVwZGF0ZSBjaGVjaz0iYWx3YXlzIi8+Cjwvam5scD4K'[m
+[32m+[m[32m            },[m
+[32m+[m[32m            {[m
+[32m+[m[32m                javafx : '8.0+'[m
+[32m+[m[32m            },[m
+[32m+[m[32m            {}[m
+[32m+[m[32m        );[m
+[32m+[m[32m    }[m
+[32m+[m[32m    <!-- Embed FX application into web page once page is loaded -->[m
+[32m+[m[32m    dtjava.addOnloadCallback(javafxEmbedbattleships);[m
+[32m+[m[32m</script>[m
+[32m+[m
+[32m+[m[32m</head><body>[m
+[32m+[m[32m<h2>Test page for <b>Battleships</b></h2>[m
+[32m+[m[32m  <b>Webstart:</b> <a href='Battleships.jnlp' onclick="return launchApplication('Battleships.jnlp');">click to launch this app as webstart</a><br><hr><br>[m
+[32m+[m
+[32m+[m[32m  <!-- Applet will be inserted here -->[m
+[32m+[m[32m  <div id='javafx-app-placeholder'></div>[m
+[32m+[m[32m</body></html>[m
+[1mdiff --git a/dist/Battleships.jar b/dist/Battleships.jar[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ca049ac[m
+Binary files /dev/null and b/dist/Battleships.jar differ
+[1mdiff --git a/dist/Battleships.jnlp b/dist/Battleships.jnlp[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1a74421[m
+[1m--- /dev/null[m
+[1m+++ b/dist/Battleships.jnlp[m
+[36m@@ -0,0 +1,18 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Battleships.jnlp">[m
+[32m+[m[32m  <information>[m
+[32m+[m[32m    <title>Battleships</title>[m
+[32m+[m[32m    <vendor>kuhnmi</vendor>[m
+[32m+[m[32m    <description>null</description>[m
+[32m+[m[32m    <offline-allowed/>[m
+[32m+[m[32m  </information>[m
+[32m+[m[32m  <resources>[m
+[32m+[m[32m    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>[m
+[32m+[m[32m    <jar href="Battleships.jar" size="4204" download="eager" />[m
+[32m+[m[32m  </resources>[m
+[32m+[m[32m  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Battleships" >[m
+[32m+[m[32m    <param name="requiredFXVersion" value="8.0+"/>[m
+[32m+[m[32m  </applet-desc>[m
+[32m+[m[32m  <jfx:javafx-desc  width="800" height="600" main-class="battleships.Battleships"  name="Battleships" />[m
+[32m+[m[32m  <update check="always"/>[m
+[32m+[m[32m</jnlp>[m
+[1mdiff --git a/dist/web-files/dtjava.js b/dist/web-files/dtjava.js[m
+[1mnew file mode 100644[m
+[1mindex 0000000..96edbef[m
+[1m--- /dev/null[m
+[1m+++ b/dist/web-files/dtjava.js[m
+[36m@@ -0,0 +1,3954 @@[m
+[32m+[m[32m/*[m
+[32m+[m[32m * Copyright (c) 2006, 2017, Oracle and/or its affiliates. All rights reserved.[m
+[32m+[m[32m * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m  The Java Deployment Toolkit is a utility to deploy Java content in[m
+[32m+[m[32m  the browser as applets or applications using the right version of Java.[m
+[32m+[m[32m  If needed it can initiate an upgrade of user's system to install required[m
+[32m+[m[32m  components of Java platform.[m
+[32m+[m[32m  <p>[m
+[32m+[m[32m  Note that some of the Deployment Toolkit methods may not be fully operational if[m
+[32m+[m[32m  used before web page body is loaded (because DT native plugins could not be instantiated).[m
+[32m+[m[32m  If you intend to use it before web page DOM tree is ready then dtjava.js[m
+[32m+[m[32m  needs to be loaded inside the body element of the page and before use of other DT APIs.[m
+[32m+[m
+[32m+[m[32m  @module java/deployment_toolkit[m
+[32m+[m[32m*/[m
+[32m+[m[32mvar dtjava = function() {[m
+[32m+[m[32m    function notNull(o) {[m
+[32m+[m[32m        return (o != undefined && o != null);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function isDef(fn) {[m
+[32m+[m[32m        return (fn != null && typeof fn != "undefined");[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    //return true if any of patterns from query list is found in the given string[m
+[32m+[m[32m    function containsAny(lst, str) {[m
+[32m+[m[32m        for (var q = 0; q < lst.length; q++) {[m
+[32m+[m[32m            if (str.indexOf(lst[q]) != -1) {[m
+[32m+[m[32m                return true;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return false;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    /* Location of static web content - images, javascript files. */[m
+[32m+[m[32m    var jscodebase =  (function () {[m
+[32m+[m[32m        // <script> elements are added to the DOM and run synchronously,[m
+[32m+[m[32m        // the currently running script will also be the last element in the array[m
+[32m+[m[32m        var scripts = document.getElementsByTagName("script");[m
+[32m+[m[32m        var src = scripts[scripts.length - 1].getAttribute("src");[m
+[32m+[m[32m        return src ? src.substring(0, src.lastIndexOf('/') + 1) : "";[m
+[32m+[m[32m    })();[m
+[32m+[m
+[32m+[m[32m    //set to true to disable FX auto install (before release)[m
+[32m+[m[32m    var noFXAutoInstall = false;[m
+[32m+[m
+[32m+[m[32m    // page has no body yet, postpone plugin installation[m
+[32m+[m[32m    postponeNativePluginInstallation = false;[m
+[32m+[m
+[32m+[m[32m    // JRE version we start to have JRE and FX true co-bundle[m
+[32m+[m[32m    var minJRECobundleVersion = "1.7.0_06";[m
+[32m+[m
+[32m+[m[32m    //aliases[m
+[32m+[m[32m    var d = document;[m
+[32m+[m[32m    var w = window;[m
+[32m+[m
+[32m+[m[32m    var cbDone = false;  //done with onload callbacks[m
+[32m+[m[32m    var domInternalCb = []; //list of internal callbacks[m
+[32m+[m[32m    var domCb = [];      //list of callbacks[m
+[32m+[m[32m    var ua = null;[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    // Add internal function to be called on DOM ready event.[m
+[32m+[m[32m    // These functions will be called before functions added by addOnDomReady().[m
+[32m+[m[32m    // Used to do internal initialization (installing native plug-in) to avoid[m
+[32m+[m[32m    // race condition with user requests.[m
+[32m+[m[32m    function addOnDomReadyInternal(fn) {[m
+[32m+[m[32m        if (cbDone) {[m
+[32m+[m[32m            fn();[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            domInternalCb[domInternalCb.length] = fn;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    // add function to be called on DOM ready event[m
+[32m+[m[32m    function addOnDomReady(fn) {[m
+[32m+[m[32m        if (cbDone) {[m
+[32m+[m[32m            fn();[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            domCb[domCb.length] = fn;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    //invoke pending onload callbacks[m
+[32m+[m[32m    function invokeCallbacks() {[m
+[32m+[m[32m        if (!cbDone) {[m
+[32m+[m[32m            //swfoject.js tests whether DOM is actually ready first[m
+[32m+[m[32m            //  in order to not fire too early. Use same heuristic[m
+[32m+[m[32m            try {[m
+[32m+[m[32m                var t = d.getElementsByTagName("body")[0].appendChild([m
+[32m+[m[32m                    d.createElement("div"));[m
+[32m+[m[32m                t.parentNode.removeChild(t);[m
+[32m+[m[32m            } catch (e) {[m
+[32m+[m[32m                return;[m
+[32m+[m[32m            }[m
+[32m+[m[32m            cbDone = true;[m
+[32m+[m[32m            for (var i = 0; i < domInternalCb.length; i++) {[m
+[32m+[m[32m                domInternalCb[i]();[m
+[32m+[m[32m            }[m
+[32m+[m[32m            for (var i = 0; i < domCb.length; i++) {[m
+[32m+[m[32m                domCb[i]();[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    //cross browser onload support.[m
+[32m+[m[32m    //Derived from swfobject.js[m
+[32m+[m[32m    function addOnload(fn) {[m
+[32m+[m[32m        if (isDef(w.addEventListener)) {[m
+[32m+[m[32m            w.addEventListener("load", fn, false);[m
+[32m+[m[32m        } else if (isDef(d.addEventListener)) {[m
+[32m+[m[32m            d.addEventListener("load", fn, false);[m
+[32m+[m[32m        } else if (isDef(w.attachEvent)) {[m
+[32m+[m[32m            w.attachEvent("onload", fn);[m
+[32m+[m[32m            //TODO: swfobject also keeps references to the listeners to detach them on onload[m
+[32m+[m[32m            // to avoid memory leaks ...[m
+[32m+[m[32m        } else if (typeof w.onload == "function") {[m
+[32m+[m[32m            var fnOld = w.onload;[m
+[32m+[m[32m            w.onload = function() {[m
+[32m+[m[32m                fnOld();[m
+[32m+[m[32m                fn();[m
+[32m+[m[32m            };[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            w.onload = fn;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function detectEnv() {[m
+[32m+[m[32m        var dom = isDef(d.getElementById) && isDef(d.getElementsByTagName) && isDef(d.createElement);[m
+[32m+[m[32m        var u = navigator.userAgent.toLowerCase(),[m
+[32m+[m[32m            p = navigator.platform.toLowerCase();[m
+[32m+[m
+[32m+[m[32m        //NB: may need to be refined as some user agent may contain strings related to other browsers[m
+[32m+[m[32m        //   (e.g. Chrome has both Safari and mozilla, Safari also has mozilla[m
+[32m+[m[32m        var windows = p ? /win/.test(p) : /win/.test(u),[m
+[32m+[m[32m            mac = p ? /mac/.test(p) : /mac/.test(u),[m
+[32m+[m[32m            linux = p ? /linux/.test(p) : /linux/.test(u),[m
+[32m+[m[32m            chrome = /chrome/.test(u),[m
+[32m+[m[32m            // get webkit version or false if not webkit[m
+[32m+[m[32m            webkit = !chrome && /webkit/.test(u) ?[m
+[32m+[m[32m                parseFloat(u.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")) : false,[m
+[32m+[m[32m            opera = /opera/.test(u),[m
+[32m+[m[32m            cputype = null,[m
+[32m+[m[32m            osVersion = null;[m
+[32m+[m
+[32m+[m[32m        var ie = false;[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            //Used to be using trick from[m
+[32m+[m[32m            //  http://webreflection.blogspot.com/2009/01/32-bytes-to-know-if-your-browser-is-ie.html[m
+[32m+[m[32m            //ie = !+"\v1",[m
+[32m+[m[32m            //but it does not work with IE9 in standards mode[m
+[32m+[m[32m            //Reverting to alternative - use execScript[m
+[32m+[m[32m            ie = isDef(window.execScript);[m
+[32m+[m[32m            // IE 11 does not support execScript any more and no exception is thrown, so lets use more naive test.[m
+[32m+[m[32m            // http://msdn.microsoft.com/en-us/library/ie/bg182625(v=vs.85).aspx[m
+[32m+[m[32m            if (!ie) { // We do not want to overwrite if ie was detected above.[m
+[32m+[m[32m                ie = (navigator.userAgent.match(/Trident/i) != null);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        } catch (ee) {[m
+[32m+[m[32m            //if javafx app is in the iframe and content of main window is coming from other domain[m
+[32m+[m[32m            //  then some browsers may restrict access to outer window properties,[m
+[32m+[m[32m            //  e.g. FF can throw exception for top.execScript (see RT-17885)[m
+[32m+[m[32m            //We could revert to more naive test, e.g. test user agent for "MSIE " string[m
+[32m+[m[32m            // but so far IE does not seem to throw exception => if we get here it is not IE anyways[m
+[32m+[m[32m            ie = false;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        var edge = false;[m
+[32m+[m[32m        var noActiveX = false;[m
+[32m+[m[32m        edge = (navigator.userAgent.match(/Edge/i) != null);[m
+[32m+[m
+[32m+[m[32m        // If IE and Windows 8 or Windows 8.1 then check for Metro mode[m
+[32m+[m[32m        if(ie && navigator.userAgent.match(/Windows NT 6\.[23]/i) != null) {[m
+[32m+[m[32m            try {[m
+[32m+[m[32m                // try to create a known ActiveX object[m
+[32m+[m[32m                new ActiveXObject("htmlfile");[m
+[32m+[m[32m            } catch(e) {[m
+[32m+[m		[32m// ActiveX is disabled or not supported.[m
+[32m+[m[32m                noActiveX = true;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        if(edge || noActiveX) {[m
+[32m+[m[32m            ie = false;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mvar noPluginWebBrowser = edge || chrome || noActiveX;[m
+[32m+[m
+[32m+[m[32m        //we are not required to detect everything and can leave values null as[m
+[32m+[m[32m        // long as we later treat them accordingly.[m
+[32m+[m[32m        //We use "cputype" to detect if given hardware is supported,[m
+[32m+[m[32m        // e.g. we do not support PPC or iPhone/iPad despite they are running Mac OS[m
+[32m+[m[32m        //We use "osVersion" to detect if Java/JavaFX can be installed on this OS[m
+[32m+[m[32m        // e.g. Oracle Java for Mac requires 10.7.3[m
+[32m+[m[32m        if (mac) {[m
+[32m+[m[32m            if ((p && /intel/.test(p)) || /intel/.test(u)) {[m
+[32m+[m[32m                cputype = "intel";[m
+[32m+[m[32m            }[m
+[32m+[m[32m            //looking for things like 10_7, 10_6_8, 10.4 in the user agent[m
+[32m+[m[32m            var t = u.match(/mac os x (10[0-9_\.]+)/);[m
+[32m+[m[32m            //normalize to "." separators[m
+[32m+[m[32m            osVersion = notNull(t) ? t[0].replace("mac os x ","").replace(/_/g, ".") : null;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // trim() is not supported by IE10 and before[m
+[32m+[m[32m        if(typeof String.prototype.trim !== 'function') {[m
+[32m+[m[32m           String.prototype.trim = function() {[m
+[32m+[m[32m               return this.replace(/^\s+|\s+$/g, '');[m
+[32m+[m[32m           }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // startsWith() is not supported by IE[m
+[32m+[m[32m        if(typeof String.prototype.startsWith !== 'function') {[m
+[32m+[m[32m           String.prototype.startsWith = function(searchString, position) {[m
+[32m+[m[32m               position = position || 0;[m
+[32m+[m[32m               return this.indexOf(searchString, position) === position;[m
+[32m+[m[32m           }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m        // Check mime types. Works with netscape family browsers and checks latest installed plugin only[m
+[32m+[m[32m        var mm = navigator.mimeTypes;[m
+[32m+[m[32m        var jre = null;[m
+[32m+[m[32m        var deploy = null;[m
+[32m+[m[32m        var fx = null;[m
+[32m+[m[32m        var override = false;[m
+[32m+[m
+[32m+[m[32m        if (typeof __dtjavaTestHook__ !== 'undefined' &&[m
+[32m+[m[32m            __dtjavaTestHook__ != null &&[m
+[32m+[m[32m            __dtjavaTestHook__.jre != null &&[m
+[32m+[m[32m            __dtjavaTestHook__.jfx != null &&[m
+[32m+[m[32m            __dtjavaTestHook__.deploy != null) {[m
+[32m+[m[32m            jre = __dtjavaTestHook__.jre;[m
+[32m+[m[32m            deploy = __dtjavaTestHook__.deploy;[m
+[32m+[m[32m            fx = __dtjavaTestHook__.jfx;[m
+[32m+[m[32m            override = true;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        else {[m
+[32m+[m[32m            //Cache configuration from plugin mimetypes[m
+[32m+[m[32m            //It is only available for NPAPI browsers[m
+[32m+[m[32m            for (var t = 0; t < mm.length; t++) {[m
+[32m+[m[32m                // The jpi-version is the JRE version.[m
+[32m+[m[32m                var m = navigator.mimeTypes[t].type;[m
+[32m+[m[32m                if (m.indexOf("application/x-java-applet;version") != -1 && m.indexOf('=') != -1) {[m
+[32m+[m[32m                    var v = m.substring(m.indexOf('=') + 1);[m
+[32m+[m[32m                    // Use the existing version comparison mechanism to ensure that[m
+[32m+[m[32m                    // the latest JRE is selected ( "versionA"<="VersionB" equals to[m
+[32m+[m[32m                    // versionCheck("versionA+","versionB") returns "true")[m
+[32m+[m[32m                    if(jre == null || versionCheck(jre + "+", v)){[m
+[32m+[m			[32mjre = v;[m
+[32m+[m	[32m            }[m
+[32m+[m[32m                }[m
+[32m+[m[32m                //Supported for 7u6 or later[m
+[32m+[m[32m                if (m.indexOf("application/x-java-applet;deploy") != -1 && m.indexOf('=') != -1) {[m
+[32m+[m[32m                    deploy = m.substring(m.indexOf('=') + 1);[m
+[32m+[m[32m                }[m
+[32m+[m[32m                //javafx version for cobundled javafx (7u6+)[m
+[32m+[m[32m                if (m.indexOf("application/x-java-applet;javafx") != -1 && m.indexOf('=') != -1) {[m
+[32m+[m[32m                    fx = m.substring(m.indexOf('=') + 1);[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        return {haveDom:dom, wk:webkit, ie:ie, win:windows,[m
+[32m+[m[32m                linux:linux, mac:mac, op: opera, chrome:chrome, edge:edge,[m
+[32m+[m[32m                jre:jre, deploy:deploy, fx:fx, noPluginWebBrowser:noPluginWebBrowser,[m
+[32m+[m[32m                cputype: cputype, osVersion: osVersion, override: override};[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m   function showMessageBox() {[m
+[32m+[m[32m        var message = 'Java Plug-in is not supported by this browser. <a href="https://java.com/dt-redirect">More info</a>';[m
+[32m+[m[32m        var mbStyle = 'background-color: #ffffce;text-align: left;border: solid 1px #f0c000; padding: 1.65em 1.65em .75em 0.5em; font-family: Helvetica, Arial, sans-serif; font-size: 75%; bottom:0; left:0; right:0; position:fixed; margin:auto; opacity:0.9; width:400px;';[m
+[32m+[m[32m        var messageStyle = "border: .85px; margin:-2.2em 0 0.55em 2.5em;";[m
+[32m+[m[32m        var closeButtonStyle = "margin-left:10px;font-weight:bold;float:right;font-size:22px;line-height:20px;cursor:pointer;color:red;"[m
+[32m+[m[32m        var messageBox = '<span style="'+ closeButtonStyle +'" onclick="this.parentElement.style.display=\'none\';">&times;</span><img src="https://java.com/js/alert_16.png"><div style="'+ messageStyle +'"><p>'+ message + '</p>';[m
+[32m+[m
+[32m+[m
+[32m+[m[32m        var divTag = document.createElement("div");[m
+[32m+[m[32m        divTag.id = "messagebox";[m
+[32m+[m[32m        divTag.setAttribute('style', mbStyle);[m
+[32m+[m[32m        divTag.innerHTML = messageBox;[m
+[32m+[m[32m        document.body.appendChild(divTag);[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m[32m    //partially derived from swfobject.js[m
+[32m+[m[32m    var initDone = false;[m
+[32m+[m
+[32m+[m[32m    function init() {[m
+[32m+[m[32m        if (typeof __dtjavaTestHook__ !== 'undefined') {[m
+[32m+[m[32m          jre = null;[m
+[32m+[m[32m          jfx = null;[m
+[32m+[m[32m          deploy = null;[m
+[32m+[m
+[32m+[m[32m          if ((__dtjavaTestHook__ != null) && (__dtjavaTestHook__.args != null)) {[m
+[32m+[m[32m              jre = __dtjavaTestHook__.args.jre;[m
+[32m+[m[32m              jfx = __dtjavaTestHook__.args.jfx;[m
+[32m+[m[32m              deploy = __dtjavaTestHook__.args.deploy;[m
+[32m+[m[32m          }[m
+[32m+[m
+[32m+[m[32m          if ((window.location.href.indexOf('http://localhost') == 0) ||[m
+[32m+[m[32m             (window.location.href.indexOf('file:///') == 0)) {[m
+[32m+[m[32m             __dtjavaTestHook__ = {[m
+[32m+[m[32m                detectEnv: detectEnv,[m
+[32m+[m[32m                Version: Version,[m
+[32m+[m[32m                checkFXSupport: checkFXSupport,[m
+[32m+[m[32m                versionCheck: versionCheck,[m
+[32m+[m[32m                versionCheckFX: versionCheckFX,[m
+[32m+[m[32m                jre: jre,[m
+[32m+[m[32m                jfx: jfx,[m
+[32m+[m[32m                deploy: deploy[m
+[32m+[m[32m             };[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        if (initDone) return;[m
+[32m+[m
+[32m+[m[32m        ua = detectEnv();[m
+[32m+[m[32m        if (!ua.haveDom) {[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        //NB: dtjava.js can be added dynamically and init() can be called after[m
+[32m+[m[32m        //    document onload event is fired[m
+[32m+[m[32m        if (( isDef(d.readyState) && d.readyState == "complete") ||[m
+[32m+[m[32m            (!isDef(d.readyState) &&[m
+[32m+[m[32m                (d.getElementsByTagName("body")[0] || d.body))) {[m
+[32m+[m[32m            invokeCallbacks();[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        if (!cbDone) {[m
+[32m+[m[32m            if (isDef(d.addEventListener)) {[m
+[32m+[m[32m                d.addEventListener("DOMContentLoaded",[m
+[32m+[m[32m                    invokeCallbacks, false);[m
+[32m+[m[32m            }[m
+[32m+[m[32m            if (ua.ie && ua.win) {[m
+[32m+[m[32m                // http://msdn.microsoft.com/en-us/library/ie/ms536343(v=vs.85).aspx[m
+[32m+[m[32m                // attachEvent is not supported by IE 11.[m
+[32m+[m[32m                if (isDef(d.addEventListener)) {[m
+[32m+[m[32m                    d.addEventListener("onreadystatechange", function() {[m
+[32m+[m[32m                        if (d.readyState == "complete") {[m
+[32m+[m[32m                            d.removeEventListener("onreadystatechange", arguments.callee, false);[m
+[32m+[m[32m                            invokeCallbacks();[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                    }, false);[m
+[32m+[m[32m                } else {[m
+[32m+[m[32m                    d.attachEvent("onreadystatechange", function() {[m
+[32m+[m[32m                        if (d.readyState == "complete") {[m
+[32m+[m[32m                            d.detachEvent("onreadystatechange", arguments.callee);[m
+[32m+[m[32m                            invokeCallbacks();[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                    });[m
+[32m+[m[32m                }[m
+[32m+[m[32m                if (w == top) { // if not inside an iframe[m
+[32m+[m[32m                    (function() {[m
+[32m+[m[32m                        if (cbDone) {[m
+[32m+[m[32m                            return;[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                        //AI: what for??[m
+[32m+[m[32m                        try {[m
+[32m+[m[32m                            d.documentElement.doScroll("left");[m
+[32m+[m[32m                        } catch(e) {[m
+[32m+[m[32m                            setTimeout(arguments.callee, 0);[m
+[32m+[m[32m                            return;[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                        invokeCallbacks();[m
+[32m+[m[32m                    })();[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m            if (ua.wk) {[m
+[32m+[m[32m                (function() {[m
+[32m+[m[32m                    if (cbDone) {[m
+[32m+[m[32m                        return;[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                    if (!/loaded|complete/.test(d.readyState)) {[m
+[32m+[m[32m                        setTimeout(arguments.callee, 0);[m
+[32m+[m[32m                        return;[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                    invokeCallbacks();[m
+[32m+[m[32m                })();[m
+[32m+[m[32m            }[m
+[32m+[m[32m            addOnload(invokeCallbacks);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        //only try to install native plugin if we do not have DTLite[m
+[32m+[m[32m        //Practically this means we are running NPAPI browser on Windows[m
+[32m+[m[32m        //(Chrome or FF) and recent JRE (7u4+?)[m
+[32m+[m[32m        if (!haveDTLite()) {[m
+[32m+[m[32m            installNativePlugin();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m   function getAbsoluteUrl(jnlp){[m
+[32m+[m[32m        var absoluteUrl;[m
+[32m+[m[32m        if(isAbsoluteUrl(jnlp)) {[m
+[32m+[m[32m            absoluteUrl = jnlp;[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            var location = window.location.href;[m
+[32m+[m[32m            var pos = location.lastIndexOf('/');[m
+[32m+[m[32m            var docbase =  pos > -1 ? location.substring(0, pos + 1) : location + '/';[m
+[32m+[m	[32m    absoluteUrl = docbase + jnlp;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return absoluteUrl;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function launchWithJnlpProtocol(jnlp) {[m
+[32m+[m[32m        document.location="jnlp:"+ getAbsoluteUrl(jnlp);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    function isAbsoluteUrl(url){[m
+[32m+[m[32m       var protocols = ["http://", "https://", "file://"];[m
+[32m+[m[32m       for (var i=0; i < protocols.length; i++){[m
+[32m+[m[32m         if(url.toLowerCase().startsWith(protocols[i])){[m
+[32m+[m[41m         [m	[32mreturn true;;[m
+[32m+[m	[32m }[m
+[32m+[m[32m       }[m
+[32m+[m[32m       return false;[m
+[32m+[m[32m     }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     This class provides details on why current platform does not meet[m
+[32m+[m[32m     application platform requirements. Note that severe problems are[m
+[32m+[m[32m     reported immediately and therefore full check may be not performed and[m
+[32m+[m[32m     some (unrelated to fatal problem)[m
+[32m+[m[32m     methods may provide false positive answers.[m
+[32m+[m[32m     <p>[m
+[32m+[m[32m     If multiple components do not match then worst status is reported.[m
+[32m+[m[32m     Application need to repeat checks on each individual component[m
+[32m+[m[32m     if it want to find out all details.[m
+[32m+[m
+[32m+[m[32m     @class PlatformMismatchEvent[m
+[32m+[m[32m     @for   dtjava[m
+[32m+[m[32m     */[m
+[32m+[m[32m    function PlatformMismatchEvent(a) {[m
+[32m+[m
+[32m+[m[32m        //expect to get all parameters needed[m
+[32m+[m[32m        for (var p in a) {[m
+[32m+[m[32m            this[p] = a[p];[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        /**[m
+[32m+[m[32m         * @method toString[m
+[32m+[m[32m         * @return {string}[m
+[32m+[m[32m         *    Returns string replesentation of event. Useful for debugging.[m
+[32m+[m[32m         */[m
+[32m+[m[32m        this.toString = function() {[m
+[32m+[m[32m            return "MISMATCH [os=" + this.os + ", browser=" + this.browser[m
+[32m+[m[32m                + ", jre=" + this.jre + ", fx=" + this.fx[m
+[32m+[m[32m                + ", relaunch=" + this.relaunch + ", platform="[m
+[32m+[m[32m                + this.platform + "]";[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        /**[m
+[32m+[m[32m         @method isUnsupportedPlatform[m
+[32m+[m[32m         @return {boolean}[m
+[32m+[m[32m         Returns true if this platform (OS/hardware) is not supported in a way[m
+[32m+[m[32m         to satisfy all platfrom requirements.[m
+[32m+[m[32m         (E.g. page is viewed on iPhone or JavaFX 2.0 application on Solaris.)[m
+[32m+[m[32m         <p>[m
+[32m+[m[32m         Note that this does not include browser match data.[m
+[32m+[m[32m         If platform is unsupported then application can not be[m
+[32m+[m[32m         launched and user need to use another platform to view it.[m
+[32m+[m[32m         */[m
+[32m+[m
+[32m+[m[32m        this.isUnsupportedPlatform = function() {[m
+[32m+[m[32m            return this.os;[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        /**[m
+[32m+[m[32m         @method isUnsupportedBrowser[m
+[32m+[m[32m         @return {boolean}[m
+[32m+[m[32m         Returns true if error is because current browser is not supported.[m
+[32m+[m[32m         <p>[m
+[32m+[m[32m         If true is returned and isRelaunchNeeded() returns true too then[m
+[32m+[m[32m         there are known supported browsers browsers for this platform.[m
+[32m+[m[32m         (but they are not necessary installed on end user system)[m
+[32m+[m[32m         */[m
+[32m+[m[32m        this.isUnsupportedBrowser = function() {[m
+[32m+[m[32m            return this.browser;[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        /**[m
+[32m+[m[32m         @method jreStatus[m
+[32m+[m[32m         @return {string}[m
+[32m+[m
+[32m+[m[32m         Returns "ok" if error was not due to missing JRE.[m
+[32m+[m[32m         Otherwise return error code characterizing the problem:[m
+[32m+[m[32m         <ul>[m
+[32m+[m[32m         <li> none - no JRE were detected on the system[m
+[32m+[m[32m         <li> old - some version of JRE was detected but it does not match platform requirements[m
+[32m+[m[32m         <li> oldplugin - matching JRE found but it is configured to use deprecated Java plugin that[m
+[32m+[m[32m         does not support Java applets[m
+[32m+[m[32m         <ul>[m
+[32m+[m[32m         <p>[m
+[32m+[m[32m         canAutoInstall() and isRelaunchNeeded() can be used to[m
+[32m+[m[32m         get more details on how seamless user' install experience will be.[m
+[32m+[m[32m         */[m
+[32m+[m[32m        this.jreStatus = function() {[m
+[32m+[m[32m            return this.jre;[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        /**[m
+[32m+[m[32m         * @method jreInstallerURL[m
+[32m+[m[32m         * @param {string} locale (optional) Locale to be used for installation web page[m
+[32m+[m[32m         * @return {string}[m
+[32m+[m[32m         *[m
+[32m+[m[32m         * Return URL of page to visit to install required version of Java.[m
+[32m+[m[32m         * If matching java runtime is already installed or not officially supported[m
+[32m+[m[32m         * then return value is null.[m
+[32m+[m[32m         */[m
+[32m+[m[32m        this.jreInstallerURL = function(locale) {[m
+[32m+[m[32m            if (!this.os && (this.jre == "old" || this.jre == "none")) {[m
+[32m+[m[32m                return getJreUrl(locale);[m
+[32m+[m[32m            }[m
+[32m+[m[32m            return null;[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        /**[m
+[32m+[m[32m         @method javafxStatus[m
+[32m+[m[32m         @return {string}[m
+[32m+[m
+[32m+[m[32m         Returns "ok" if error was not due to missing JavaFX.[m
+[32m+[m[32m         Otherwise return error code characterizing the problem:[m
+[32m+[m[32m         <ul>[m
+[32m+[m[32m         <li> none - no JavaFX runtime is detected on the system[m
+[32m+[m[32m         <li> old - some version of JavaFX runtime iss detected but it does not match platform requirements[m
+[32m+[m[32m         <li> disabled - matching JavaFX is detected but it is disabled[m
+[32m+[m[32m         <li> unsupported - JavaFX is not supported on this platform[m
+[32m+[m[32m         <ul>[m
+[32m+[m[32m         <p>[m
+[32m+[m[32m         canAutoInstall() and isRelaunchNeeded() can be used to[m
+[32m+[m[32m         get more details on how seamless user' install experience will be.[m
+[32m+[m[32m         */[m
+[32m+[m[32m        this.javafxStatus = function() {[m
+[32m+[m[32m            return this.fx;[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        /**[m
+[32m+[m[32m         * @method javafxInstallerURL[m
+[32m+[m[32m         * @param {string} locale (optional) Locale to be used for installation web page[m
+[32m+[m[32m         * @return {string}[m
+[32m+[m[32m         *[m
+[32m+[m[32m         * Return URL of page to visit to install required version of JavaFX.[m
+[32m+[m[32m         * If matching JavaFX runtime is already installed or not officially supported[m
+[32m+[m[32m         * then return value is null.[m
+[32m+[m[32m         */[m
+[32m+[m[32m        this.javafxInstallerURL = function(locale) {[m
+[32m+[m[32m            if (!this.os && (this.fx == "old" || this.fx == "none")) {[m
+[32m+[m[32m                return getFxUrl(locale);[m
+[32m+[m[32m            }[m
+[32m+[m[32m            return null;[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        /**[m
+[32m+[m[32m         @method canAutoInstall[m
+[32m+[m[32m         @return {boolean}[m
+[32m+[m[32m         Returns true if installation of missing components can be[m
+[32m+[m[32m         triggered automatically. In particular, ture is returned[m
+[32m+[m[32m         if there are no missing components too.[m
+[32m+[m[32m         <p>[m
+[32m+[m[32m         If any of missing components need to be installed manually[m
+[32m+[m[32m         (i.e. click through additional web pages) then false is returned.[m
+[32m+[m[32m         */[m
+[32m+[m[32m        this.canAutoInstall = function() {[m
+[32m+[m[32m            return isAutoInstallEnabled(this.platform, this.jre, this.fx);[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        /**[m
+[32m+[m[32m         @method isRelaunchNeeded[m
+[32m+[m[32m         @return {boolean}[m
+[32m+[m
+[32m+[m[32m         Returns true if browser relaunch is needed before application can be loaded.[m
+[32m+[m[32m         This often is true in conjuction with need to perform installation.[m
+[32m+[m[32m         <p>[m
+[32m+[m[32m         Other typical case - use of unsupported browser when[m
+[32m+[m[32m         it is known that there are supported browser for this pltaform.[m
+[32m+[m[32m         Then both isUnsupportedBrowser() and isRelaunchNeeded() return true.[m
+[32m+[m[32m         */[m
+[32m+[m[32m        this.isRelaunchNeeded = function() {[m
+[32m+[m[32m            return this.relaunch;[m
+[32m+[m[32m        };[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    //returns version of instaled JavaFX runtime matching requested version[m
+[32m+[m[32m    //or null otherwise[m
+[32m+[m[32m    function getInstalledFXVersion(requestedVersion) {[m
+[32m+[m[32m        //NPAPI browser and JRE with cobundle[m
+[32m+[m[32m        if (ua.fx != null && versionCheckFX(requestedVersion, ua.fx)) {[m
+[32m+[m[32m            return ua.fx;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        //try to use DT[m
+[32m+[m[32m        var p = getPlugin();[m
+[32m+[m[32m        if (notNull(p)) {[m
+[32m+[m[32m            try {[m
+[32m+[m[32m                return p.getInstalledFXVersion(requestedVersion);[m
+[32m+[m[32m            } catch(e) {}[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return null;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    //concatenate list with space as separator[m
+[32m+[m[32m    function listToString(lst) {[m
+[32m+[m[32m      if (lst != null) {[m
+[32m+[m[32m          return lst.join(" ");[m
+[32m+[m[32m      } else {[m
+[32m+[m[32m          return null;[m
+[32m+[m[32m      }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function addArgToList(lst, arg) {[m
+[32m+[m[32m        if (notNull(lst)) {[m
+[32m+[m[32m           lst.push(arg);[m
+[32m+[m[32m           return lst;[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            var res = [arg];[m
+[32m+[m[32m            return res;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function doLaunch(ld, platform, cb) {[m
+[32m+[m[32m        var app = normalizeApp(ld, true);[m
+[32m+[m[32m        if(ua.noPluginWebBrowser){[m
+[32m+[m[32m            launchWithJnlpProtocol(app.url);[m
+[32m+[m[32m            return;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m[32m        //required argument is missing[m
+[32m+[m[32m        if (!(notNull(app) && notNull(app.url))) {[m
+[32m+[m[32m            throw "Required attribute missing! (application url need to be specified)";[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        //if we got array we need to copy over![m
+[32m+[m[32m        platform = new dtjava.Platform(platform);[m
+[32m+[m
+[32m+[m[32m        //normalize handlers[m
+[32m+[m[32m        cb = new dtjava.Callbacks(cb);[m
+[32m+[m
+[32m+[m[32m        var launchFunc = function() {[m
+[32m+[m[32m            //prepare jvm arguments[m
+[32m+[m[32m            var jvmArgs = notNull(platform.jvmargs) ? platform.jvmargs : null;[m
+[32m+[m[32m            if (notNull(platform.javafx)) {[m
+[32m+[m[32m                //if FX is needed we know it is available or[m
+[32m+[m[32m                // we will not get here[m
+[32m+[m[32m                var v = getInstalledFXVersion(platform.javafx);[m
+[32m+[m[32m                //add hint that we need FX toolkit to avoid relaunch[m
+[32m+[m[32m                // if JNLP is not embedded[m
+[32m+[m[32m                jvmArgs = addArgToList(jvmArgs, " -Djnlp.fx=" + v);[m
+[32m+[m[32m                //for swing applications embedding FX we do not want this property as it will[m
+[32m+[m[32m                // trigger FX toolkit and lead to app failure![m
+[32m+[m[32m                //But for JavaFX application it saves us relaunch as otherwise we wil launch with AWT toolkit ...[m
+[32m+[m[32m                if (!notNull(ld.toolkit) || ld.toolkit == "fx") {[m
+[32m+[m[32m                    jvmArgs = addArgToList(jvmArgs, " -Djnlp.tk=jfx");[m
+[32m+[m[32m                }[m
+[32m+[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m            //if we on 7u6+ we can use DTLite plugin in the NPAPI browsers[m
+[32m+[m[32m            //Caveat: as of 7u6 it does not work with Chrome on Linux because Chrome expects[m
+[32m+[m[32m            //   DTLite plugin to implement xembed (or claim to support xembed)[m
+[32m+[m[32m            if (haveDTLite() && !(ua.linux && ua.chrome)) {[m
+[32m+[m[32m                if (doLaunchUsingDTLite(app, jvmArgs, cb)) {[m
+[32m+[m[32m                    return;[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            //Did not launch yet? Try DT plugin (7u2+)[m
+[32m+[m[32m            var p =  getPlugin();[m
+[32m+[m[32m            if (notNull(p)) {[m
+[32m+[m[32m                try {[m
+[32m+[m[32m                    try {[m
+[32m+[m[32m                        //check if new DT APIs are available[m
+[32m+[m[32m                        if (versionCheck("10.6+", ua.deploy, false)) {[m
+[32m+[m[32m                            //    obj.launchApp({"url" : "http://somewhere/my.jnlp",[m
+[32m+[m[32m                            //                   "jnlp_content" : "... BASE 64 ...",[m
+[32m+[m[32m                            //                   "vmargs" : [ "-ea -Djnlp.foo=bar"[m
+[32m+[m[32m                            //                   "appargs" : [ "first arg,  second arg" ][m
+[32m+[m[32m                            //                   "params" : {"p1" : "aaa", "p2" : "bbb"}});[m
+[32m+[m[32m                            var callArgs = {"url":app.url};[m
+[32m+[m[32m                            if (notNull(jvmArgs)) {[m
+[32m+[m[32m                                callArgs["vmargs"] = jvmArgs;[m
+[32m+[m[32m                            }[m
+[32m+[m[32m                            //Only use HTML parameters, they are supposed to overwrite values in the JNLP[m
+[32m+[m[32m                            //In the future we want to pass arguments too but this needs also be exposed for[m
+[32m+[m[32m                            // embedded deployment[m
+[32m+[m[32m                            if (notNull(app.params)) {[m
+[32m+[m[32m                                //copy over and ensure all values are strings[m
+[32m+[m[32m                                // (native code will ignore them otherwise)[m
+[32m+[m[32m                                var ptmp = {};[m
+[32m+[m[32m                                for (var k in app.params) {[m
+[32m+[m[32m                                    ptmp[k] = String(app.params[k]);[m
+[32m+[m[32m                                }[m
+[32m+[m[32m                                callArgs["params"] = ptmp;[m
+[32m+[m[32m                            }[m
+[32m+[m[32m                            if (notNull(app.jnlp_content)) {[m
+[32m+[m[32m                                callArgs["jnlp_content"] = app.jnlp_content;[m
+[32m+[m[32m                            }[m
+[32m+[m[32m                            var err = p.launchApp(callArgs);[m
+[32m+[m[32m                            if (err == 0) { //0 - error[m
+[32m+[m[32m                                if (isDef(cb.onRuntimeError)) {[m
+[32m+[m[32m                                    cb.onRuntimeError(app.id);[m
+[32m+[m[32m                                }[m
+[32m+[m[32m                            }[m
+[32m+[m[32m                        } else { //revert to old DT APIs[m
+[32m+[m[32m                            //older DT APIs expects vmargs as a single string[m
+[32m+[m[32m                            if (!p.launchApp(app.url, app.jnlp_content, listToString(jvmArgs))) {[m
+[32m+[m[32m                                if (isDef(cb.onRuntimeError)) {[m
+[32m+[m[32m                                    cb.onRuntimeError(app.id);[m
+[32m+[m[32m                                }[m
+[32m+[m[32m                            }[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                        return;[m
+[32m+[m[32m                    } catch (ee) { //temp  support for older build of DT[m
+[32m+[m[32m                        if (!p.launchApp(app.url, app.jnlp_content)) {[m
+[32m+[m[32m                           if (isDef(cb.onRuntimeError)) {[m
+[32m+[m[32m                              cb.onRuntimeError(app.id);[m
+[32m+[m[32m                           }[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                        return;[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                } catch (e) {[m
+[32m+[m[32m                    //old DT[m
+[32m+[m[32m                }[m
+[32m+[m[32m            } //old Java (pre DTLite)? not Windows? or old DT[m
+[32m+[m
+[32m+[m[32m            //use old way to launch it using java plugin[m
+[32m+[m[32m            var o = getWebstartObject(app.url);[m
+[32m+[m[32m            if (notNull(d.body)) {[m
+[32m+[m[32m                d.body.appendChild(o);[m
+[32m+[m[32m            } else {[m
+[32m+[m[32m                //should never happen[m
+[32m+[m[32m                d.write(o.innerHTML);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        var r = doValidateRelaxed(platform);[m
+[32m+[m[32m        //can not launch, try to fix[m
+[32m+[m[32m        if (r != null) {[m
+[32m+[m[32m            resolveAndLaunch(app, platform, r, cb, launchFunc);[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            launchFunc();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    //process unhandled platform error - convert to code and call callback[m
+[32m+[m[32m    function reportPlatformError(app, r, cb) {[m
+[32m+[m[32m        if (isDef(cb.onDeployError)) {[m
+[32m+[m[32m            cb.onDeployError(app, r);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function isDTInitialized(p) {[m
+[32m+[m[32m        //if plugin is blocked then p.version will be undefined[m
+[32m+[m[32m        return p != null && isDef(p.version);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    //Wait until DT plugin is initialized and then run the code[m
+[32m+[m[32m    //Currently we only use it for embeded apps and Chrome on Windows[m
+[32m+[m[32m    function runUsingDT(label, f) {[m
+[32m+[m[32m        //  Possible situations:[m
+[32m+[m[32m        //   a) plugin is live and we can simply run code[m
+[32m+[m[32m        //        - just run the code[m
+[32m+[m[32m        //   b) plugin is in the DOM tree but it is not initialized yet (e.g. Chrome blocking)[m
+[32m+[m[32m        //      and there is live timer (pendingCount > 0)[m
+[32m+[m[32m        //        - there could be another request. We will APPEND to it[m
+[32m+[m[32m        //        (this is different from dtlite as in this case we can not have multiple clicks)[m
+[32m+[m[32m        //        - renew timer life counter (do not want new timer)[m
+[32m+[m[32m        //   c) plugin is in the DOM tree and it is not fully initialized yet but timer is stopped[m
+[32m+[m[32m        //        - overwrite old request[m
+[32m+[m[32m        //        - restart timer[m
+[32m+[m[32m        //[m
+[32m+[m[32m        // Problem we are solving:[m
+[32m+[m[32m        //    when plugin is ready to serve request? How do we schedule call to happen when plugin is initialized?[m
+[32m+[m[32m        // Caveat:[m
+[32m+[m[32m        //    Chrome can popup dialog asking user to grant permissions to load the plugin.[m
+[32m+[m[32m        //    There is no API to detect dialog is shown and when user grants or declines permissions[m
+[32m+[m[32m        //[m
+[32m+[m[32m        // Note:[m
+[32m+[m[32m        //    If we set property on plugin object before it is unblocked then they seem to be lost[m
+[32m+[m[32m        //   and are not propagated to the final object once it is instantiated.[m
+[32m+[m[32m        //[m
+[32m+[m[32m        // Workaround we use:[m
+[32m+[m[32m        //    Once plugin is added we will be checking if it is initialized and once we detect it we will execute code.[m
+[32m+[m[32m        //  We will stop checking after some time.[m
+[32m+[m[32m        var p = getPlugin();[m
+[32m+[m[32m        if (p == null) {[m
+[32m+[m[32m            return; //NO DT[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        if (isDTInitialized(p)) {[m
+[32m+[m[32m            f(p);[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            // see if we need new timer[m
+[32m+[m[32m            var waitAndUse = null;[m
+[32m+[m[32m            if (!isDef(dtjava.dtPendingCnt) || dtjava.dtPendingCnt == 0) {[m
+[32m+[m[32m                waitAndUse = function () {[m
+[32m+[m[32m                    if (isDTInitialized(p)) {[m
+[32m+[m[32m                        if (notNull(dtjava.dtPending)) {[m
+[32m+[m[32m                            for (var i in dtjava.dtPending) {[m
+[32m+[m[32m                                dtjava.dtPending[i]();[m
+[32m+[m[32m                            }[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                        return;[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                    if (dtjava.dtPendingCnt > 0) {[m
+[32m+[m[32m                        dtjava.dtPendingCnt--;[m
+[32m+[m[32m                        setTimeout(waitAndUse, 500);[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m            //add new task in queue[m
+[32m+[m[32m            if (!notNull(dtjava.dtPending) || dtjava.dtPendingCnt == 0) {[m
+[32m+[m[32m                dtjava.dtPending = {};[m
+[32m+[m[32m            }[m
+[32m+[m[32m            dtjava.dtPending[label] = f; //use map to ensure repitative actions are not queued (e.g. multiple click to launch webstart)[m
+[32m+[m[32m            //reset the timer counter[m
+[32m+[m[32m            dtjava.dtPendingCnt = 1000; //timer is gone after 500s[m
+[32m+[m[32m            //start timer if needed[m
+[32m+[m[32m            if (waitAndUse != null) waitAndUse();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    //returns same mismatch event if not resolved, null if resolved[m
+[32m+[m[32m    function resolveAndLaunch(app, platform, v, cb, launchFunction) {[m
+[32m+[m[32m        var p = getPlugin();[m
+[32m+[m[32m        if( p == null && ua.noPluginWebBrowser){[m
+[32m+[m[32m            var readyStateCheck = setInterval(function() {[m
+[32m+[m[32m                    if(document.readyState  == "complete"){[m
+[32m+[m[32m                        clearInterval(readyStateCheck);[m
+[32m+[m[32m                        showMessageBox();[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                }, 15);[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        //Special case: Chrome/Windows[m
+[32m+[m[32m        // (Note: IE may also block activeX control but then it will block attempts to use it too)[m
+[32m+[m[32m        if (ua.chrome && ua.win && p != null && !isDTInitialized(p)) {[m
+[32m+[m[32m            //this likely means DT plugin is blocked by Chrome[m
+[32m+[m[32m            //tell user to grant permissions and retry[m
+[32m+[m[32m            var actionLabel;[m
+[32m+[m[32m            if (notNull(app.placeholder)) {[m
+[32m+[m[32m                var onClickFunc = function() {w.open("https://www.java.com/en/download/faq/chrome.xml"); return false;};[m
+[32m+[m[32m                var msg1 = "Please give Java permission to run on this browser web page.";[m
+[32m+[m[32m                var msg2 = "Click for more information.";[m
+[32m+[m[32m                var altText = "";[m
+[32m+[m[32m                doShowMessageInTheArea(app, msg1, msg2, altText, "javafx-chrome.png", onClickFunc);[m
+[32m+[m[32m                actionLabel = app.id + "-embed";[m
+[32m+[m[32m            } else {[m
+[32m+[m[32m                v.jre = "blocked";[m
+[32m+[m[32m                reportPlatformError(app, v, cb);[m
+[32m+[m[32m                actionLabel = "launch"; //we only queue ONE webstart launch.[m
+[32m+[m[32m                                        //Do not want to try to queue different apps - bad UE[m
+[32m+[m[32m                                        // (once user enable multiple things can spawn)[m
+[32m+[m[32m                                        //Note: what if multiple webstart apps are set to launch on page load (suer do not need to click)?[m
+[32m+[m[32m                                        //      Guess do not worry for now[m
+[32m+[m[32m                                        //Note: app.id may be null in case of webstart app.[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            //now we need to start waiter. Once DT is initialized we can proceeed[m
+[32m+[m[32m            var retryFunc = function() {[m
+[32m+[m[32m                var vnew = doValidateRelaxed(platform);[m
+[32m+[m[32m                if (vnew == null) { //no problems with env[m
+[32m+[m[32m                    launchFunction();[m
+[32m+[m[32m                } else {[m
+[32m+[m[32m                    resolveAndLaunch(app, platform, vnew, cb, launchFunction);[m
+[32m+[m[32m                }[m
+[32m+[m[32m            };[m
+[32m+[m[32m            runUsingDT(actionLabel, retryFunc);[m
+[32m+[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        if (!v.isUnsupportedPlatform() && !v.isUnsupportedBrowser()) { //otherwise fatal, at least until restart of browser[m
+[32m+[m[32m            if (isMissingComponent(v) && isDef(cb.onInstallNeeded)) {[m
+[32m+[m[32m                var resolveFunc= function() {[m
+[32m+[m[32m                    //once install is over we need to revalidate[m
+[32m+[m[32m                    var vnew = doValidateRelaxed(platform);[m
+[32m+[m[32m                    if (vnew == null) { //if no problems found - can launch[m
+[32m+[m[32m                        launchFunction();[m
+[32m+[m[32m                    } else { //TODO: what happens if we installed everything but relaunch is needed??[m
+[32m+[m[32m                        //We can not get here if component install was not offered for any or missing componens[m
+[32m+[m[32m                        //(if auto install was possible, see doInstall() implementation)[m
+[32m+[m[32m                        //Hence, it is safe to assume we failed to meet requirements[m
+[32m+[m[32m                        reportPlatformError(app, vnew, cb);[m
+[32m+[m
+[32m+[m[32m                        //TODO: may be should call itself again but[m
+[32m+[m[32m                        // then it easy can become infinite loop[m
+[32m+[m
+[32m+[m[32m                        //e.g. user installs but we fail to detect it because DT[m
+[32m+[m[32m                        // is not FX aware and retry, etc.[m
+[32m+[m[32m                        //TODO: think it through[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                };[m
+[32m+[m
+[32m+[m[32m                cb.onInstallNeeded(app, platform, cb,[m
+[32m+[m[32m                            v.canAutoInstall(), v.isRelaunchNeeded(), resolveFunc);[m
+[32m+[m[32m                return;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m        reportPlatformError(app, v, cb);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function haveDTLite() {[m
+[32m+[m[32m        // IE does not support DTLite[m
+[32m+[m[32m        if (ua.deploy != null && !ua.ie) {[m
+[32m+[m[32m            return versionCheck("10.6+", ua.deploy, false);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return false;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function isDTLiteInitialized(p) {[m
+[32m+[m[32m        //if plugin is blocked then p.version will be undefined[m
+[32m+[m[32m        return p != null && isDef(p.version);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function getDTLitePlugin() {[m
+[32m+[m[32m        return document.getElementById("dtlite");[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function doInjectDTLite() {[m
+[32m+[m[32m        //do not want more than one plugin[m
+[32m+[m[32m        if (getDTLitePlugin() != null) return;[m
+[32m+[m
+[32m+[m[32m        var p = document.createElement('embed');[m
+[32m+[m[32m        p.width = '10px';[m
+[32m+[m[32m        p.height = '10px';[m
+[32m+[m[32m        p.id = "dtlite";[m
+[32m+[m[32m        p.type = "application/x-java-applet";  //means we get latest[m
+[32m+[m
+[32m+[m[32m        var div = document.createElement("div");[m
+[32m+[m[32m        div.style.position = "relative";[m
+[32m+[m[32m        div.style.left = "-10000px";[m
+[32m+[m[32m        div.appendChild(p);[m
+[32m+[m
+[32m+[m[32m        var e = document.getElementsByTagName("body");[m
+[32m+[m[32m        e[0].appendChild(div);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function runUsingDTLite(f) {[m
+[32m+[m[32m        //  Possible situations:[m
+[32m+[m[32m        //   a) first request, plugin is not in the DOM tree yet[m
+[32m+[m[32m        //        - add plugin[m
+[32m+[m[32m        //        - setup wait mechanism and run f() once plugin is ready[m
+[32m+[m[32m        //   b) plugin is live and we can simply run code[m
+[32m+[m[32m        //        - just run the code[m
+[32m+[m[32m        //   c) plugin is in the DOM tree but it is not initialized yet (e.g. Chrome blocking)[m
+[32m+[m[32m        //      and there is live timer (pendingCount > 0)[m
+[32m+[m[32m        //        - there could be another request. We will override it (e.g. user clicked multiple times)[m
+[32m+[m[32m        //        - renew timer life counter (do not want new timer)[m
+[32m+[m[32m        //   d) plugin is in the DOM tree and it is not fully initialized yet but timer is stopped[m
+[32m+[m[32m        //        - overwrite old request[m
+[32m+[m[32m        //        - restart timer[m
+[32m+[m[32m        //[m
+[32m+[m[32m        // Problem:[m
+[32m+[m[32m        //    when plugin is ready to serve request? How do we schedule call to happen when plugin is initialized?[m
+[32m+[m[32m        // Caveat:[m
+[32m+[m[32m        //    Chrome can popup dialog asking user to grant permissions to load the plugin.[m
+[32m+[m[32m        //    There is no API to detect dialog is shown and when user grants or declines permissions[m
+[32m+[m[32m        //[m
+[32m+[m[32m        // Note:[m
+[32m+[m[32m        //    If we set property on plugin object before it is unblocked then they seem to be lost[m
+[32m+[m[32m        //   and are not propagated to the final object once it is instantiated.[m
+[32m+[m[32m        //[m
+[32m+[m[32m        // Workaround we use:[m
+[32m+[m[32m        //    Once plugin is added we will be checking if it is initialized and once we detect it we will execute code.[m
+[32m+[m[32m        //  We will stop checking after some time.[m
+[32m+[m[32m        var p = getDTLitePlugin();[m
+[32m+[m[32m        if (p == null) {[m
+[32m+[m[32m            doInjectDTLite();[m
+[32m+[m[32m            p = getDTLitePlugin();[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        if (isDTLiteInitialized(p)) {[m
+[32m+[m[32m            f(p);[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            // see if we need new timer[m
+[32m+[m[32m            var waitAndUse = null;[m
+[32m+[m[32m            if (!isDef(dtjava.dtlitePendingCnt) || dtjava.dtlitePendingCnt == 0) {[m
+[32m+[m[32m                waitAndUse = function () {[m
+[32m+[m[32m                    if (isDef(p.version)) {[m
+[32m+[m[32m                        if (dtjava.pendingLaunch != null) {[m
+[32m+[m[32m                            dtjava.pendingLaunch(p);[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                        dtjava.pendingLaunch = null;[m
+[32m+[m[32m                        return;[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                    if (dtjava.dtlitePendingCnt > 0) {[m
+[32m+[m[32m                        dtjava.dtlitePendingCnt--;[m
+[32m+[m[32m                        setTimeout(waitAndUse, 500);[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m            //add new task in queue[m
+[32m+[m[32m            dtjava.pendingLaunch = f;[m
+[32m+[m[32m            //reset the timer counter[m
+[32m+[m[32m            dtjava.dtlitePendingCnt = 1000; //timer is gone after 500s[m
+[32m+[m[32m            //start timer if needed[m
+[32m+[m[32m            if (waitAndUse != null) {[m
+[32m+[m[32m                waitAndUse();[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function doLaunchUsingDTLite(app, jvmargs, cb) {[m
+[32m+[m[32m        var launchIt = function() {[m
+[32m+[m[32m            var pp = getDTLitePlugin();[m
+[32m+[m[32m            if (pp == null) {[m
+[32m+[m[32m                //should not be possible as we guard before enter this function[m
+[32m+[m[32m                if (isDef(cb.onRuntimeError)) {[m
+[32m+[m[32m                    cb.onRuntimeError(app.id);[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            //DTLite only support new invocation API[m
+[32m+[m[32m            //    obj.launchApp({"url" : "http://somewhere/my.jnlp",[m
+[32m+[m[32m            //                   "jnlp_content" : "... BASE 64 ...",[m
+[32m+[m[32m            //                   "vmargs" : [ "-ea -Djnlp.foo=bar"[m
+[32m+[m[32m            //                   "appargs" : [ "first arg,  second arg" ][m
+[32m+[m[32m            //                   "params" : {"p1" : "aaa", "p2" : "bbb"}});[m
+[32m+[m[32m            var callArgs = {"url" : app.url};[m
+[32m+[m[32m            if (notNull(jvmargs)) {[m
+[32m+[m[32m               callArgs["vmargs"] = jvmargs;[m
+[32m+[m[32m            }[m
+[32m+[m[32m            //Only use HTML parameters, they are supposed to overwrite values in the JNLP[m
+[32m+[m[32m            //In the future we want to pass arguments too but this needs also be exposed for[m
+[32m+[m[32m            // embedded deployment[m
+[32m+[m[32m            if (notNull(app.params)) {[m
+[32m+[m[32m                //copy over and ensure all values are stings[m
+[32m+[m[32m                // (native code will ignore them otherwise)[m
+[32m+[m[32m                var ptmp = {};[m
+[32m+[m[32m                for (var k in app.params) {[m
+[32m+[m[32m                    ptmp[k] = String(app.params[k]);[m
+[32m+[m[32m                }[m
+[32m+[m[32m                callArgs["params"] = ptmp;[m
+[32m+[m[32m            }[m
+[32m+[m[32m            if (notNull(app.jnlp_content)) {[m
+[32m+[m[32m               callArgs["jnlp_content"] = app.jnlp_content;[m
+[32m+[m[32m            }[m
+[32m+[m[32m            var err = pp.launchApp(callArgs);[m
+[32m+[m[32m            if (err == 0) { //0 - error[m
+[32m+[m[32m                if (isDef(cb.onRuntimeError)) {[m
+[32m+[m[32m                    cb.onRuntimeError(app.id);[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        if (versionCheck("10.4+", ua.deploy, false)) { //only for NPAPI browsers[m
+[32m+[m[32m            runUsingDTLite(launchIt);[m
+[32m+[m[32m            return true;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return false;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function getWebstartObject(jnlp) {[m
+[32m+[m[32m        var wo = null;[m
+[32m+[m[32m        if (ua.ie) { //TODO: attempt to use object in FF 3.6 lead to hang. Revert to embed for now[m
+[32m+[m[32m                     //TODO: Should Chrome use object?[m
+[32m+[m[32m            //object tag itself[m
+[32m+[m[32m            wo = d.createElement('object');[m
+[32m+[m[32m            wo.width = '1px'; //zero size reports invalid argument in IE![m
+[32m+[m[32m            wo.height = '1px'; //TODO: make it less distruptive to page layout? hide div?[m
+[32m+[m[32m            var p = d.createElement('param');[m
+[32m+[m[32m            p.name = 'launchjnlp';[m
+[32m+[m[32m            p.value = jnlp;[m
+[32m+[m[32m            wo.appendChild(p);[m
+[32m+[m[32m            p = d.createElement('param');[m
+[32m+[m[32m            p.name = 'docbase';[m
+[32m+[m[32m            p.value = notNull(d.documentURI) ? d.documentURI : d.URL;[m
+[32m+[m[32m            wo.appendChild(p);[m
+[32m+[m
+[32m+[m[32m            if (!ua.ie) {[m
+[32m+[m[32m                //NB:do not need to use exact version in mime type as generic should be mapped to latest?[m
+[32m+[m[32m                wo.type = "application/x-java-applet;version=1.7";[m
+[32m+[m[32m            } else {[m
+[32m+[m[32m                wo.classid = "clsid:8AD9C840-044E-11D1-B3E9-00805F499D93";[m
+[32m+[m[32m            }[m
+[32m+[m[32m        } else { //TODO: else part should go away once we figure out what is going on with FF[m
+[32m+[m[32m            wo = d.createElement('embed');[m
+[32m+[m[32m            wo.width = '0px';[m
+[32m+[m[32m            wo.height = '0px';[m
+[32m+[m[32m            //NB: dot notation did not work for custom attributes??? revert to setAttribute[m
+[32m+[m[32m            wo.setAttribute('launchjnlp', jnlp);[m
+[32m+[m[32m            wo.setAttribute('docbase', (notNull(d.documentURI) ? d.documentURI : d.URL));[m
+[32m+[m[32m            //NB:do not need to use exact version in mime type as generic should be mapped to latest?[m
+[32m+[m[32m            wo.type = "application/x-java-applet;version=1.7";[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        var div = d.createElement("div");[m
+[32m+[m[
