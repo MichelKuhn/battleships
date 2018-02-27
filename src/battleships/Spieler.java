@@ -3,10 +3,11 @@ package battleships;
 import java.util.ArrayList;
 
 public class Spieler {
-    private String name;
-    private ArrayList<Feld> felder;
+    private final String name;
+    private final ArrayList<Feld> felder;
+    private final boolean menschlich;
 
-    public Spieler(String name) {
+    public Spieler(String name, boolean menschlich) {
         this.name = name;
         
         this.felder = new ArrayList();
@@ -15,6 +16,8 @@ public class Spieler {
                 felder.add(new Feld(i, j));
             }
         }
+        
+        this.menschlich = menschlich;
     }
 
     public String getName() {
@@ -28,13 +31,17 @@ public class Spieler {
     public boolean ballern (Spieler spieler, int x, int y) {
         for (Feld feld : spieler.getFelder()) {
             if (feld.getX() == x && feld.getY() == y) {
+                feld.setBeschossen(true);
                 if (feld.isSchiff() == true) {
-                    feld.setBeschossen(true);
                     return true;
                 }
             }
         }
         
         return false;
+    }
+
+    public boolean isMenschlich() {
+        return menschlich;
     }
 }
