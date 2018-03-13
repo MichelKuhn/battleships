@@ -3,13 +3,13 @@ package battleships;
 public class Feld {
     private int x;
     private int y;
-    private boolean schiff;
+    private int schiff;
     private boolean beschossen;
 
     public Feld(int x, int y) {
         this.x = x;
         this.y = y;
-        this.schiff = false;
+        this.schiff = -1;
         this.beschossen = false;
     }
 
@@ -21,11 +21,11 @@ public class Feld {
         return y;
     }
     
-    public boolean isSchiff() {
+    public int getSchiff() {
         return schiff;
     }
 
-    public void setSchiff(boolean schiff) {
+    public void setSchiff(int schiff) {
         this.schiff = schiff;
     }
 

@@ -6,6 +6,15 @@ public class Spieler {
     private final String name;
     private final ArrayList<Feld> felder;
     private final boolean menschlich;
+    private ArrayList<Schiff> schiffe;
+    
+    private void schiffeFuellen() {
+        this.schiffe.add(new Schiff(5, false));
+        this.schiffe.add(new Schiff(4, false));
+        this.schiffe.add(new Schiff(3, false));
+        this.schiffe.add(new Schiff(3, false));
+        this.schiffe.add(new Schiff(2, false));
+    }
 
     public Spieler(String name, boolean menschlich) {
         this.name = name;
@@ -18,6 +27,9 @@ public class Spieler {
         }
         
         this.menschlich = menschlich;
+        
+        this.schiffe = new ArrayList<>();
+        schiffeFuellen();
     }
 
     public String getName() {
@@ -28,20 +40,52 @@ public class Spieler {
         return felder;
     }
     
-    public boolean ballern (Spieler spieler, int x, int y) {
-        for (Feld feld : spieler.getFelder()) {
-            if (feld.getX() == x && feld.getY() == y) {
-                feld.setBeschossen(true);
-                if (feld.isSchiff() == true) {
-                    return true;
+    public boolean isMenschlich() {
+        return menschlich;
+    }
+
+    public ArrayList<Schiff> getSchiffe() {
+        return schiffe;
+    }
+    
+    public boolean setzeSchiff(int index, boolean horizontal, int x, int y) {
+        Schiff schiff = this.schiffe.get(index);
+        
+        ArrayList<Feld> schiffAusFeldern = new ArrayList<>();
+        if (horizontal == true) {
+            for (int i = x; i < x + schiff.getLaenge(); i++) {
+                System.out.println(i);
+                for (Feld feld : this.felder) {
+                    if (feld.getX() == i && feld.getY() == y) {
+                        schiffAusFeldern.add(feld);
+                    }
+                }
+            }
+        } else {
+            for (int i = y; i < y + schiff.getLaenge(); i++) {
+                for (Feld feld : this.felder) {
+                    if (feld.getX() == x && feld.getY() == i) {
+                        schiffAusFeldern.add(feld);
+                    }
                 }
             }
         }
         
-        return false;
-    }
-
-    public boolean isMenschlich() {
-        return menschlich;
+        for (Feld feld : schiffAusFeldern) {
+            if (feld.getSchiff() != -1) {
+                return false;
+            }
+        }
+        
+        for (Feld feld : schiffAusFeldern) {
+            feld.setSchiff(index);
+            System.out.println(feld.getX() + "/" + feld.getY());
+        }
+        
+        schiff.setDa(true);
+        schiff.setHorizontal(horizontal);
+        schiff.setX(x);
+        schiff.setY(y);
+        return true;
     }
 }
