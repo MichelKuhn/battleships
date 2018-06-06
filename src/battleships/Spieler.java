@@ -43,6 +43,16 @@ public class Spieler {
     public ArrayList<Feld> getFelder() {
         return felder;
     }
+
+    public Feld getFeldByCoordinates(int x, int y) {
+        for (Feld feld : felder) {
+            if (feld.getX() == x && feld.getY() == y) {
+                return feld;
+            }
+        }
+
+        return null;
+    }
     
     public boolean isMenschlich() {
         return menschlich;

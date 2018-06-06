@@ -18,12 +18,6 @@ import static battleships.Status.SPIELEN;
 public class Battleships extends Application {
     public final static int GEGNER_HELFER_NUMMER = 550;
 
-    private Status gegnerZieht(Spiel spiel) {
-        spiel.ballern(false, spiel.getRunde(), spiel.getRunde());
-        spiel.neueRunde();
-        return SPIELEN;
-    }
-
     private void zeichenSchiffeZuSetzen(Spiel spiel, KartenZeichner kz) {
         int nummer = 1;
         for (Schiff schiff : spiel.getSpieler1().getSetzSchiffe()) {
@@ -65,6 +59,8 @@ public class Battleships extends Application {
         Spiel spiel = new Spiel("Der mensch");
         setzeGegnerSchiffe(spiel);
 
+        AI ai = new AI(spiel);
+
         gc.drawImage(new Image("battleships/images/menu.png"), 0, 0);
 
         theScene.setOnMouseClicked(
@@ -105,7 +101,7 @@ public class Battleships extends Application {
                                 gc.drawImage(new Image("battleships/images/sieg.png"), 0, 0);
                                 break;
                             }
-                            gegnerZieht(spiel);
+                            ai.macheZug();
                             if (spiel.getSpieler1().hatVerloren()) {
                                 gc.drawImage(new Image("battleships/images/verloren.png"), 0, 0);
                                 break;
