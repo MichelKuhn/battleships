@@ -3,13 +3,13 @@ package battleships;
 public class Schiff {
     private int laenge;
     private boolean horizontal;
-    private boolean da;
+    private int id;
     private int x;
     private int y;
 
-    public Schiff(int laenge, boolean da) {
+    public Schiff(int laenge, int id) {
         this.laenge = laenge;
-        this.da = da;
+        this.id = id;
     }
 
     public int getLaenge() {
@@ -22,14 +22,6 @@ public class Schiff {
 
     public void setHorizontal(boolean horizontal) {
         this.horizontal = horizontal;
-    }
-
-    public boolean isDa() {
-        return da;
-    }
-
-    public void setDa(boolean da) {
-        this.da = da;
     }
 
     public int getX() {
@@ -46,5 +38,9 @@ public class Schiff {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public int getId() {
+        return id;
     }
 }

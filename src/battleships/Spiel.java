@@ -28,7 +28,7 @@ public class Spiel {
         for (Feld feld : spieler.getFelder()) {
             if (feld.getX() == x && feld.getY() == y) {
                 feld.setBeschossen(true);
-                if (feld.getSchiff() != -1) {
+                if (feld.getSchiffId() != -1) {
                     return true;
                 }
             }

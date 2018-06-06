@@ -6,14 +6,16 @@ public class Spieler {
     private final String name;
     private final ArrayList<Feld> felder;
     private final boolean menschlich;
+    private ArrayList<Schiff> setzSchiffe;
     private ArrayList<Schiff> schiffe;
+    private boolean horizontal;
     
     private void schiffeFuellen() {
-        this.schiffe.add(new Schiff(5, false));
-        this.schiffe.add(new Schiff(4, false));
-        this.schiffe.add(new Schiff(3, false));
-        this.schiffe.add(new Schiff(3, false));
-        this.schiffe.add(new Schiff(2, false));
+        this.setzSchiffe.add(new Schiff(5, 1));
+        this.setzSchiffe.add(new Schiff(4, 2));
+        this.setzSchiffe.add(new Schiff(3, 3));
+        this.setzSchiffe.add(new Schiff(3, 4));
+        this.setzSchiffe.add(new Schiff(2, 5));
     }
 
     public Spieler(String name, boolean menschlich) {
@@ -29,7 +31,9 @@ public class Spieler {
         this.menschlich = menschlich;
         
         this.schiffe = new ArrayList<>();
+        this.setzSchiffe = new ArrayList<>();
         schiffeFuellen();
+        this.horizontal = false;
     }
 
     public String getName() {
@@ -47,14 +51,17 @@ public class Spieler {
     public ArrayList<Schiff> getSchiffe() {
         return schiffe;
     }
-    
-    public boolean setzeSchiff(int index, boolean horizontal, int x, int y) {
-        Schiff schiff = this.schiffe.get(index);
-        
+
+    public boolean setzeSchiff(int x, int y) {
+        Schiff setzSchiff = this.setzSchiffe.get(0);
         ArrayList<Feld> schiffAusFeldern = new ArrayList<>();
-        if (horizontal == true) {
-            for (int i = x; i < x + schiff.getLaenge(); i++) {
+
+        if (horizontal) {
+            for (int i = x; i < x + setzSchiff.getLaenge(); i++) {
                 System.out.println(i);
+                if (i > 10) {
+                    return false;
+                }
                 for (Feld feld : this.felder) {
                     if (feld.getX() == i && feld.getY() == y) {
                         schiffAusFeldern.add(feld);
@@ -62,7 +69,10 @@ public class Spieler {
                 }
             }
         } else {
-            for (int i = y; i < y + schiff.getLaenge(); i++) {
+            for (int i = y; i < y + setzSchiff.getLaenge(); i++) {
+                if (i > 10) {
+                    return false;
+                }
                 for (Feld feld : this.felder) {
                     if (feld.getX() == x && feld.getY() == i) {
                         schiffAusFeldern.add(feld);
@@ -72,20 +82,35 @@ public class Spieler {
         }
         
         for (Feld feld : schiffAusFeldern) {
-            if (feld.getSchiff() != -1) {
+            if (feld.getSchiffId() != -1) {
                 return false;
             }
         }
         
-        for (Feld feld : schiffAusFeldern) {
-            feld.setSchiff(index);
-            System.out.println(feld.getX() + "/" + feld.getY());
-        }
-        
-        schiff.setDa(true);
-        schiff.setHorizontal(horizontal);
+        Schiff schiff = new Schiff(setzSchiff.getLaenge(), setzSchiff.getId());
         schiff.setX(x);
         schiff.setY(y);
+        schiff.setHorizontal(horizontal);
+        this.schiffe.add(schiff);
+
+        for (Feld feld : schiffAusFeldern) {
+            feld.setSchiffId(schiff.getId());
+            System.out.println(feld.getX() + "/" + feld.getY());
+        }
+
+        this.setzSchiffe.remove(setzSchiff);
         return true;
+    }
+
+    public ArrayList<Schiff> getSetzSchiffe() {
+        return setzSchiffe;
+    }
+
+    public boolean isHorizontal() {
+        return horizontal;
+    }
+
+    public void setHorizontal(boolean horizontal) {
+        this.horizontal = horizontal;
     }
 }
