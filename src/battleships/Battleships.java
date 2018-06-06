@@ -6,10 +6,13 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import static battleships.Status.NIEDERLAGE;
+import static battleships.Status.SIEG;
 import static battleships.Status.SPIELEN;
 
 public class Battleships extends Application {
@@ -30,6 +33,19 @@ public class Battleships extends Application {
         kz.zeichneKarte(spiel.getSpieler1());
         kz.zeichneHorizontalAnzeige(spiel.getSpieler1());
     }
+
+    private void zeichneSpiel(Spiel spiel, KartenZeichner kz) {
+        kz.zeichneKarten(spiel);
+    }
+
+    private void setzeGegnerSchiffe(Spiel spiel) {
+        Spieler gegner = spiel.getSpieler2();
+        gegner.setzeSchiff(2, 2);
+        gegner.setzeSchiff(3, 2);
+        gegner.setzeSchiff(5, 2);
+        gegner.setzeSchiff(6, 2);
+        gegner.setzeSchiff(8, 2);
+    }
     
     @Override
     public void start(Stage primaryStage) {
@@ -47,6 +63,9 @@ public class Battleships extends Application {
         KartenZeichner kz = new KartenZeichner(gc);
         
         Spiel spiel = new Spiel("Der mensch");
+        setzeGegnerSchiffe(spiel);
+
+        gc.drawImage(new Image("battleships/images/menu.png"), 0, 0);
 
         theScene.setOnMouseClicked(
         new EventHandler<MouseEvent>()
@@ -55,9 +74,8 @@ public class Battleships extends Application {
             {
                 switch(spiel.getStatus()) {
                     case MENU:
-                        //TODO: Grafik anzeigen
                         spiel.setStatus(Status.SCHIFFE_SETZEN);
-                        kz.zeichneKarte(spiel.getSpieler1());
+                        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                         zeichenSchiffeZuSetzen(spiel, kz);
                         break;
                     case SCHIFFE_SETZEN:
@@ -66,20 +84,43 @@ public class Battleships extends Application {
                             spiel.getSpieler1().setzeSchiff((int)e.getX() / 50, (int)e.getY() / 50);
                             if(spiel.getSpieler1().getSetzSchiffe().isEmpty()) {
                                 spiel.setStatus(SPIELEN);
+                                zeichneSpiel(spiel, kz);
+                                break;
                             } else {
                                 spiel.setStatus(Status.SCHIFFE_SETZEN);
                             }
                         } else if (e.getButton() == MouseButton.SECONDARY) {
                             spiel.getSpieler1().setHorizontal(!spiel.getSpieler1().isHorizontal());
                         }
+
                         zeichenSchiffeZuSetzen(spiel, kz);
                         break;
                     case SPIELEN:
-                        System.out.print("Haulin ass, gettin paid");
-                        /**spiel.ballern(true, (int)e.getX() / 50 - 11, (int)e.getY() / 50);
-                        kz.zeichneKarten(spiel);
-                        spiel.setStatus(gegnerZieht(spiel));
-                        kz.zeichneKarten(spiel); **/
+                        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+                        if (e.getButton() == MouseButton.PRIMARY) {
+                            spiel.ballern(true, (int)e.getX() / 50 - 11, (int)e.getY() / 50);
+                            if (spiel.getSpieler2().hatVerloren()) {
+                                spiel.setStatus(SIEG);
+                                gc.drawImage(new Image("battleships/images/sieg.png"), 0, 0);
+                                break;
+                            }
+                            gegnerZieht(spiel);
+                            if (spiel.getSpieler1().hatVerloren()) {
+                                gc.drawImage(new Image("battleships/images/verloren.png"), 0, 0);
+                                break;
+                            }
+                        }
+
+                        zeichneSpiel(spiel, kz);
+                        break;
+
+                    case SIEG:
+                        gc.drawImage(new Image("battleships/images/sieg.png"), 0, 0);
+                        break;
+
+                    case NIEDERLAGE:
+                        gc.drawImage(new Image("battleships/images/verloren.png"), 0, 0);
                         break;
                 }
             }

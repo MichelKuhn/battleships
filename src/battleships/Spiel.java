@@ -20,15 +20,38 @@ public class Spiel {
         return spieler2;
     }
 
-    public boolean ballern(boolean menschlich, int x, int y) {
-        Spieler spieler = this.spieler1;
-        if (menschlich == true) {
-            spieler = this.spieler2;
+    public void checkVersenkt(Schiff schiff, Spieler spieler) {
+        int counter = 0;
+        for (Feld feld:spieler.getFelder()) {
+            if (feld.getSchiffId() == schiff.getId() && feld.isBeschossen()) {
+                counter++;
+            }
         }
-        for (Feld feld : spieler.getFelder()) {
+
+        if (counter == schiff.getLaenge()) {
+            schiff.setVersenkt(true);
+        } else {
+            schiff.setVersenkt(false);
+        }
+    }
+
+    public boolean ballern(boolean menschlich, int x, int y) {
+        Spieler gegner = this.spieler1;
+        if (menschlich) {
+            gegner = this.spieler2;
+        }
+        for (Feld feld : gegner.getFelder()) {
+            if (x > 10 || y > 10) {
+                return false;
+            }
+
             if (feld.getX() == x && feld.getY() == y) {
                 feld.setBeschossen(true);
                 if (feld.getSchiffId() != -1) {
+                    for (Schiff schiff : gegner.getSchiffe()) {
+                        checkVersenkt(schiff, gegner);
+                    }
+
                     return true;
                 }
             }

@@ -58,7 +58,6 @@ public class Spieler {
 
         if (horizontal) {
             for (int i = x; i < x + setzSchiff.getLaenge(); i++) {
-                System.out.println(i);
                 if (i > 10) {
                     return false;
                 }
@@ -95,7 +94,6 @@ public class Spieler {
 
         for (Feld feld : schiffAusFeldern) {
             feld.setSchiffId(schiff.getId());
-            System.out.println(feld.getX() + "/" + feld.getY());
         }
 
         this.setzSchiffe.remove(setzSchiff);
@@ -112,5 +110,25 @@ public class Spieler {
 
     public void setHorizontal(boolean horizontal) {
         this.horizontal = horizontal;
+    }
+
+    public Schiff getSchiffById (int id) {
+        for (Schiff schiff : this.schiffe) {
+            if (schiff.getId() == id) {
+                return schiff;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean hatVerloren() {
+        for (Schiff schiff : schiffe) {
+            if (!schiff.isVersenkt()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

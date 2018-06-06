@@ -6,10 +6,12 @@ public class Schiff {
     private int id;
     private int x;
     private int y;
+    private boolean versenkt;
 
     public Schiff(int laenge, int id) {
         this.laenge = laenge;
         this.id = id;
+        this.versenkt = false;
     }
 
     public int getLaenge() {
@@ -42,5 +44,13 @@ public class Schiff {
 
     public int getId() {
         return id;
+    }
+
+    public boolean isVersenkt() {
+        return versenkt;
+    }
+
+    public void setVersenkt(boolean versenkt) {
+        this.versenkt = versenkt;
     }
 }

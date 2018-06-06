@@ -12,12 +12,14 @@ public class KartenZeichner {
     private Image wasser;
     private Image schiff;
     private Image beschossen;
+    private Image versenkt;
 
     public KartenZeichner(GraphicsContext gc) {
         this.gc = gc;
         this.wasser = new Image("battleships/images/wasser.png");
         this.beschossen = new Image("battleships/images/beschossen.png");
         this.schiff = new Image("battleships/images/schiff.png");
+        this.versenkt = new Image("battleships/images/versenkt.png");
     }
     
     public void zeichneKarte(Spieler spieler) {
@@ -31,11 +33,23 @@ public class KartenZeichner {
             int x = feld.getX() * 50 + helper;
             int y = feld.getY() * 50;
             gc.drawImage(wasser, x, y);
-            if (feld.getSchiffId() != -1) {
-                gc.drawImage(schiff, x, y);
+            if(spieler.isMenschlich()) {
+                if (feld.getSchiffId() != -1) {
+                    gc.drawImage(schiff, x, y);
+                }
             }
+
             if (feld.isBeschossen()) {
-                gc.drawImage(beschossen, x, y);
+                if (feld.getSchiffId() != -1) {
+                    gc.drawImage(schiff, x, y); //Mensch zweimal, aber eigentlich egal
+                    if (spieler.getSchiffById(feld.getSchiffId()).isVersenkt()) {
+                        gc.drawImage(versenkt, x, y);
+                    } else {
+                        gc.drawImage(beschossen, x, y);
+                    }
+                } else {
+                    gc.drawImage(beschossen, x, y);
+                }
             }
         }
     }
