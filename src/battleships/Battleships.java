@@ -11,7 +11,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import static battleships.Status.NIEDERLAGE;
+import static battleships.Status.MENU;
 import static battleships.Status.SIEG;
 import static battleships.Status.SPIELEN;
 
@@ -31,15 +31,6 @@ public class Battleships extends Application {
     private void zeichneSpiel(Spiel spiel, KartenZeichner kz) {
         kz.zeichneKarten(spiel);
     }
-
-    private void setzeGegnerSchiffe(Spiel spiel) {
-        Spieler gegner = spiel.getSpieler2();
-        gegner.setzeSchiff(2, 2);
-        gegner.setzeSchiff(3, 2);
-        gegner.setzeSchiff(5, 2);
-        gegner.setzeSchiff(6, 2);
-        gegner.setzeSchiff(8, 2);
-    }
     
     @Override
     public void start(Stage primaryStage) {
@@ -57,11 +48,12 @@ public class Battleships extends Application {
         KartenZeichner kz = new KartenZeichner(gc);
         
         Spiel spiel = new Spiel("Der mensch");
-        setzeGegnerSchiffe(spiel);
 
-        AI ai = new AI(spiel);
+        final AI ai = new AI(spiel);
 
         gc.drawImage(new Image("battleships/images/menu.png"), 0, 0);
+        gc.drawImage(new Image("battleships/images/leicht.png"), 150, 300);
+        gc.drawImage(new Image("battleships/images/hart.png"), 350, 300);
 
         theScene.setOnMouseClicked(
         new EventHandler<MouseEvent>()
@@ -70,15 +62,27 @@ public class Battleships extends Application {
             {
                 switch(spiel.getStatus()) {
                     case MENU:
-                        spiel.setStatus(Status.SCHIFFE_SETZEN);
-                        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                        zeichenSchiffeZuSetzen(spiel, kz);
+                        if (e.getX() > 150 && e.getX() < 300 && e.getY() > 300 && e.getY() < 450) {
+                            ai.setMode(false);
+                            spiel.setStatus(Status.SCHIFFE_SETZEN);
+                            gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                            zeichenSchiffeZuSetzen(spiel, kz);
+                        } else if (e.getX() > 350 && e.getX() < 500 && e.getY() > 300 && e.getY() < 450) {
+                            ai.setMode(true);
+                            spiel.setStatus(Status.SCHIFFE_SETZEN);
+                            gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                            zeichenSchiffeZuSetzen(spiel, kz);
+                        } else {
+                            spiel.setStatus(MENU);
+                        }
+
                         break;
                     case SCHIFFE_SETZEN:
                         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                         if (e.getButton() == MouseButton.PRIMARY) {
                             spiel.getSpieler1().setzeSchiff((int)e.getX() / 50, (int)e.getY() / 50);
                             if(spiel.getSpieler1().getSetzSchiffe().isEmpty()) {
+                                ai.setzeSchiffe(spiel);
                                 spiel.setStatus(SPIELEN);
                                 zeichneSpiel(spiel, kz);
                                 break;

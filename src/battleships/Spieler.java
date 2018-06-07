@@ -21,7 +21,7 @@ public class Spieler {
     public Spieler(String name, boolean menschlich) {
         this.name = name;
         
-        this.felder = new ArrayList();
+        this.felder = new ArrayList<>();
         for (int i = 1; i < 11; i++) {
             for (int j = 1; j < 11; j++) {
                 felder.add(new Feld(i, j));
@@ -62,6 +62,24 @@ public class Spieler {
         return schiffe;
     }
 
+    private boolean hatNachbar(int x, int y) {
+        ArrayList<Feld> nachbarn = new ArrayList<>();
+        nachbarn.add(new Feld(x - 1, y));
+        nachbarn.add(new Feld(x + 1, y));
+        nachbarn.add(new Feld(x, y + 1));
+        nachbarn.add(new Feld(x, y -1));
+
+        for (Feld dasFeld : nachbarn) {
+            if (dasFeld.getX() < 11 && dasFeld.getY() < 11 && dasFeld.getX() > 0 && dasFeld.getY() > 0) {
+                if (getFeldByCoordinates(dasFeld.getX(), dasFeld.getY()).getSchiffId() != - 1) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public boolean setzeSchiff(int x, int y) {
         Schiff setzSchiff = this.setzSchiffe.get(0);
         ArrayList<Feld> schiffAusFeldern = new ArrayList<>();
@@ -91,7 +109,7 @@ public class Spieler {
         }
         
         for (Feld feld : schiffAusFeldern) {
-            if (feld.getSchiffId() != -1) {
+            if (feld.getSchiffId() != -1 || hatNachbar(feld.getX(), feld.getY())) {
                 return false;
             }
         }
