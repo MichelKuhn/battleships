@@ -76,11 +76,46 @@ public class AI {
         return nachbarn;
     }
 
-    private void addIdeaFeld(Feld feld) {
+    private void addIdeaFeld(Feld feld, Feld schussFeld) {
         if (validFeld(feld)) {
             if (!spiel.getSpieler1().getFeldByCoordinates(feld.getX(), feld.getY()).isBeschossen()) {
+                feld.setSchiffId(spiel.getSpieler1().getFeldByCoordinates(schussFeld.getX(), schussFeld.getY()).getSchiffId());
                 ideen.add(feld);
             }
+        }
+    }
+
+    private void eliminateByLine() {
+        Spieler spieler = spiel.getSpieler1();
+        int lastShipId = 0;
+        int lastX = 0;
+        int lastY = 0;
+        ArrayList<Feld> removeFields = new ArrayList<>();
+
+        for (Feld getroffenesFeld : treffer) {
+            int shipId = spieler.getFeldByCoordinates(getroffenesFeld.getX(), getroffenesFeld.getY()).getSchiffId();
+            if (shipId == lastShipId) {
+                if (lastX == getroffenesFeld.getX()) {
+                    for (Feld feldIdee : ideen) {
+                        if (feldIdee.getSchiffId() == shipId && feldIdee.getX() != lastX) {
+                            removeFields.add(feldIdee);
+                        }
+                    }
+                } else if (lastY == getroffenesFeld.getY()) {
+                    for (Feld feldIdee : ideen) {
+                        if (feldIdee.getSchiffId() == shipId && feldIdee.getY() != lastY) {
+                            removeFields.add(feldIdee);
+                        }
+                    }
+                }
+            }
+            for (Feld removeFeld : removeFields) {
+                ideen.remove(removeFeld);
+            }
+
+            lastShipId = shipId;
+            lastX = getroffenesFeld.getX();
+            lastY = getroffenesFeld.getY();
         }
     }
 
@@ -101,10 +136,6 @@ public class AI {
         Schiff schiff = spiel.getSpieler1().getSchiffById(spiel.getSpieler1().getFeldByCoordinates(x, y).getSchiffId());
 
         return schiff.isVersenkt();
-    }
-
-    public boolean isActive() {
-        return active;
     }
 
     public void macheZug() {
@@ -130,12 +161,14 @@ public class AI {
                         }
                     }
                 }
+                entferneFeldMitKoordinaten(schussFeld.getX(), schussFeld.getY(), treffer);
             } else {
                 for (Feld feld : getNachbarn(schussFeld.getX(), schussFeld.getY())) {
-                    addIdeaFeld(feld);
+                    addIdeaFeld(feld, schussFeld);
                 }
             }
-        }
 
+            eliminateByLine();
+        }
     }
 }
